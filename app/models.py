@@ -3,6 +3,14 @@ from sqlalchemy.orm import Mapped, mapped_column
 from app.database import Base
 from sqlalchemy import String, Float, ForeignKey
 
+class Aluno(Base):
+    __tablename__ = 'tb_alunos'
+    id: Mapped[int] = mapped_column(primary_key=True)
+    matricula: Mapped[str] = mapped_column(String(20))
+    nome_aluno: Mapped[str] = mapped_column(String(255))
+    email: Mapped[str] = mapped_column(String(255))
+    endereco_id: Mapped[int] = mapped_column(ForeignKey('tb_enderecos.id'))
+
 class Endereco(Base):
     __tablename__ = 'tb_enderecos'
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -12,14 +20,6 @@ class Endereco(Base):
     cidade: Mapped[str] = mapped_column(String(255))
     estado: Mapped[str] = mapped_column(String(2))
     regiao: Mapped[str] = mapped_column(String(255))
-
-class Aluno(Base):
-    __tablename__ = 'tb_alunos'
-    id: Mapped[int] = mapped_column(primary_key=True)
-    matricula: Mapped[str] = mapped_column(String(20))
-    nome_aluno: Mapped[str] = mapped_column(String(255))
-    email: Mapped[str] = mapped_column(String(255))
-    endereco_id: Mapped[int] = mapped_column(ForeignKey('tb_enderecos.id'))
 
 
 class Disciplina(Base):

@@ -1,4 +1,3 @@
-# schema de entrada para endereco
 from typing import Optional
 from pydantic import BaseModel
 class EnderecoIn(BaseModel):
